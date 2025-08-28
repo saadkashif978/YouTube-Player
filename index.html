@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: "Inter", sans-serif;
+      color: #e0e1dd;
+    }
+
+    body {
+      background: linear-gradient(-45deg, #0d1b2a, #1b263b, #415a77, #778da9);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+      height: 100vh;
+    }
+
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .if {
+      height: 90vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    iframe {
+      border: none;
+      border-radius: 20px;
+      box-shadow: #00000069 0px 7px 12px 4px;
+    }
+
+    .input {
+      height: 10vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    input {
+      background-color: #1b263b;
+      height: 40px;
+      border: 2px solid #acb7c3;
+      border-radius: 30px;
+      margin: 1%;
+      padding: 0 10px 0 10px;
+      box-shadow: #00000069 0 4px 9px 4px;
+    }
+
+    button {
+      background-color: #0d1b2a;
+      height: 40px;
+      border: 2px solid #1b263b;
+      border-radius: 30px;
+      box-shadow: #00000069 0 4px 9px 4px;
+      padding: 0 20px 0 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="if">
+    <iframe id="myFrame" src="" width="1280" height="720" allowfullscreen></iframe>
+  </div>
+
+  <!-- Input and button below the video -->
+  <div class="input">
+    <input type="text" id="urlInput" placeholder="Enter website URL" size="40">
+    <button onclick="changeSrc()">Load Video</button>
+  </div>
+  <script>
+    // // Load saved URL on page load
+    // window.onload = function () {
+    //   let savedUrl = localStorage.getItem("iframeUrl");
+    //   if (savedUrl) {
+    //     document.getElementById("myFrame").src = savedUrl;
+    //     document.getElementById("urlInput").value = savedUrl;
+    //   } else {
+    //     document.getElementById("myFrame").src = "https://skextra.github.io/Portfolio/";
+    //   }
+    // }
+
+    // function changeSrc() {
+    //   let url = document.getElementById("urlInput").value;
+
+    //   // Add https:// if missing
+    //   if (!url.startsWith("http")) {
+    //     url = "https://" + url;
+    //   }
+
+    //   // Set iframe and save to localStorage
+    //   document.getElementById("myFrame").src = url;
+    //   localStorage.setItem("iframeUrl", url);
+    // }
+
+    window.onload = function () {
+    let savedUrl = localStorage.getItem("iframeUrl");
+    if (savedUrl) {
+      document.getElementById("myFrame").src = savedUrl;
+      document.getElementById("urlInput").value = savedUrl;
+    } else {
+      document.getElementById("myFrame").src = "https://skextra.github.io/Portfolio/";
+    }
+  }
+
+  function changeSrc() {
+    let url = document.getElementById("urlInput").value.trim();
+
+    // Add https:// if missing
+    if (!url.startsWith("http")) {
+      url = "https://" + url;
+    }
+
+    // Check if it's a YouTube watch link and convert it to embed
+    if (url.includes("youtube.com/watch?v=")) {
+      let videoId = url.split("v=")[1].split("&")[0];
+      url = "https://www.youtube.com/embed/" + videoId;
+    } 
+    // Also support youtu.be short links
+    else if (url.includes("youtu.be/")) {
+      let videoId = url.split("youtu.be/")[1].split("?")[0];
+      url = "https://www.youtube.com/embed/" + videoId;
+    }
+
+    document.getElementById("myFrame").src = url;
+    localStorage.setItem("iframeUrl", url);
+  }
+  </script>
+
+</body>
+
+</html>
