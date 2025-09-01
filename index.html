@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>YouTube Play</title>
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
@@ -16,25 +17,12 @@
     }
 
     body {
-      background: linear-gradient(-45deg, #0d1b2a, #1b263b, #415a77, #778da9);
-      background-size: 400% 400%;
-      animation: gradient 15s ease infinite;
+      background: linear-gradient(180deg, #0d1b2a, #1b263b, #415a77, #778da9);
       height: 100vh;
+      background: radial-gradient(#778da9, #415a77, #1b263b, #0d1b2a);
     }
 
-    @keyframes gradient {
-      0% {
-        background-position: 0% 50%;
-      }
-
-      50% {
-        background-position: 100% 50%;
-      }
-
-      100% {
-        background-position: 0% 50%;
-      }
-    }
+    
 
     .if {
       height: 90vh;
@@ -46,7 +34,6 @@
     iframe {
       border: none;
       border-radius: 20px;
-      box-shadow: #00000069 0px 7px 12px 4px;
     }
 
     .input {
@@ -88,30 +75,6 @@
     <button onclick="changeSrc()">Load Video</button>
   </div>
   <script>
-    // // Load saved URL on page load
-    // window.onload = function () {
-    //   let savedUrl = localStorage.getItem("iframeUrl");
-    //   if (savedUrl) {
-    //     document.getElementById("myFrame").src = savedUrl;
-    //     document.getElementById("urlInput").value = savedUrl;
-    //   } else {
-    //     document.getElementById("myFrame").src = "https://skextra.github.io/Portfolio/";
-    //   }
-    // }
-
-    // function changeSrc() {
-    //   let url = document.getElementById("urlInput").value;
-
-    //   // Add https:// if missing
-    //   if (!url.startsWith("http")) {
-    //     url = "https://" + url;
-    //   }
-
-    //   // Set iframe and save to localStorage
-    //   document.getElementById("myFrame").src = url;
-    //   localStorage.setItem("iframeUrl", url);
-    // }
-
     window.onload = function () {
     let savedUrl = localStorage.getItem("iframeUrl");
     if (savedUrl) {
